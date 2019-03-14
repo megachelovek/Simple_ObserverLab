@@ -33,11 +33,13 @@ public class Main extends Application  {
 
     private static ImageView imageView;
     private static Image image;
+    private static String current = standart;
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws Exception{
         image = new Image(standart);
+        current =standart;
         imageView = new ImageView(image);
         imageView.setX(0);
         imageView.setY(0);
@@ -63,15 +65,65 @@ public class Main extends Application  {
     }
 
     private static void UpdateImage(double x,double y){
-        if ( 10<x && x<90 && 10<y && y<90 ) {
-            String tt=image.toString();
-            if (image.equals(new Image(standart))  )  {
-                image = new Image(leftEye);
+        if ( 40<x && x<95 && 40<y && y<95 ) {
+            if (current == standart){
+                leftEye();
             }else{
-                image = new Image(standart);
+                standart();
             }
         }
+        if ( 128<x && x<180 && 50<y && y<105 ) {
+            if (current == standart){
+                rightEye();
+            }else{
+                standart();
+            }
+        }
+        if ( 95<x && x<130 && 100<y && y<155 ) {
+            if (current == standart){
+                nose();
+            }else{
+                standart();
+            }
+        }
+        if ( 60<x && x<180 && 180<y && y<218 ) {
+            if (current == standart){
+                mouth();
+            }else{
+                standart();
+            }
+        }
+
     }
 
+    private static void leftEye(){
+        image = new Image(leftEye);
+        imageView.setImage(image);
+        current= leftEye;
+    }
+
+    private static void standart(){
+        image = new Image(standart);
+        imageView.setImage(image);
+        current= standart;
+    }
+
+    private static void rightEye(){
+        image = new Image(rightEye);
+        imageView.setImage(image);
+        current= rightEye;
+    }
+
+    private static void mouth(){
+        image = new Image(mouth);
+        imageView.setImage(image);
+        current= mouth;
+    }
+
+    private static void nose(){
+        image = new Image(nose);
+        imageView.setImage(image);
+        current= nose;
+    }
 
 }
